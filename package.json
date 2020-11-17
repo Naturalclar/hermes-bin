@@ -1,0 +1,9 @@
+{
+  "name": "hermes-bin",
+  "version": "0.0.1-alpha.0",
+  "description": "Bianry wrapper for hermes- small and lightweight JavaScript engine",
+  "main": "index.js",
+  "repository": "https://github.com/Naturalclar/hermes-bin.git",
+  "author": "Jesse Katsumata <jesse.katsumata@gmail.com>",
+  "license": "MIT"
+}
