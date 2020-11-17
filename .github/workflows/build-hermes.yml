@@ -4,14 +4,8 @@ on: push
 jobs:
   ios:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        node-version: [12]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}           
       - name: Install build tools
         run: brew install cmake ninja
       - name: Clone Hermes
