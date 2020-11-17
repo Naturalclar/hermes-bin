@@ -18,12 +18,12 @@ jobs:
           hermes/utils/build/configure.py --distribute
           cd build_release && ninja
       - name: Tar executables
-        run: tar -cvf hermes-ios.tar build_release/bin
+        run: cd build_release && tar -cvf hermes-ios.tar bin
       - name: Upload executables
         uses: actions/upload-artifact@v2
         with:
           name: hermes-ios
-          path: hermes-ios.tar
+          path: build_release/hermes-ios.tar
 
 
   # linux:
