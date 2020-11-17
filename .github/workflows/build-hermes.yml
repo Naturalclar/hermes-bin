@@ -16,12 +16,12 @@ jobs:
       - name: Build Hermes
         run: | 
           hermes/utils/build/configure.py --distribute
-          cd hermes/build_release && ninja
+          cd build_release && ninja
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
           name: hermes-ios
-          path: hermes/bin
+          path: build_release/bin
 
 
   # linux:
