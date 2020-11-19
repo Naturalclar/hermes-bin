@@ -1,0 +1,51 @@
+name: Build-Hermes
+on: push
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install build tools
+        run: brew install cmake ninja
+      - name: Clone Hermes
+        uses: actions/checkout@v2
+        with:
+          repository: facebook/hermes
+          path: hermes
+      - name: Build Hermes
+        run: | 
+          hermes/utils/build/configure.py --distribute
+          cd build_release && ninja
+      - name: Tar executables
+        run: cd build_release && tar -cvf hermes-ios.tar bin
+      - name: Upload executables
+        uses: actions/upload-artifact@v2
+        with:
+          name: hermes-ios
+          path: build_release/hermes-ios.tar
+
+
+  # linux:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [12]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2  
+  #       with:
+  #         node-version: ${{ matrix.node-version }}         
+
+  # windows:
+  #   runs-on: windows-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [12]
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2    
+  #       with:
+  #         node-version: ${{ matrix.node-version }}       
+
+
